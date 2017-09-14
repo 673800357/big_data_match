@@ -1,0 +1,104 @@
+.container{
+  width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-top: 50px;
+}
+.left_container{
+  float: left;
+  width: 880px;
+  /* height: 780px; */
+}
+.right_container{
+  float: right;
+  width: 300px;
+  /* height: 780px; */
+}
+.relate{
+  border: 1px solid rgb(217, 217, 217);
+  padding: 5px;
+  background: url('../static/b1.jpg');
+  background-size: cover;
+  height: 340px;
+}
+.taglist{
+  width: 300px;
+  height: 240px;
+  margin-top: 5px;
+}
+
+
+.head{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.answer_message{
+  max-width: 400px;
+  background-color: rgb(150, 240, 240);
+  color: white;
+  display: inline-block;
+  padding: 9px;
+  border-radius: 9%;
+  margin-left: 19px;
+  font-size: 20px;
+}
+.ask_message{
+  max-width: 400px;
+  display: inline-block;
+  padding: 9px;
+  border-radius: 9%;
+  margin-right: 19px;
+  background-color: rgb(240, 240, 240);
+  color: rgb(160, 160, 160);
+  font-size: 20px;
+}
+.container_chat{
+  height: 545px;
+  overflow: auto;
+  background-color: rgba(150, 240, 240, 0.1);
+}
+.item1{
+float: left;
+margin-left: 43px;
+margin-top: 26px;
+vertical-align: middle;
+}
+.item2{
+  float: right;
+  margin-right: 43px;
+  margin-top: 26px;
+  vertical-align: middle;
+}
+
+.button_login{
+  display: inline-block;
+  color: white;
+  background-color: rgb(150, 240, 240);
+  font-size: 28px;
+  padding: 3px 23px;
+  border-radius: 13%;
+  cursor: pointer;
+}
+.button_login:hover{
+  background-color: rgb(150, 240, 240,0.5);
+}
+.container_login{
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.robot{
+  background-color: rgba(150, 240, 240, 0.5);
+  height: 168px;
+  overflow: auto;
+}
+.head_tag{
+  height: 71px;
+  background-color: rgb(224, 224, 224);
+}
+.button_modal{
+  width: 100%;
+  margin-top: 10px;
+}
