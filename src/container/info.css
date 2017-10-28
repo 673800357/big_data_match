@@ -1,0 +1,17 @@
+.info_header{
+    height: 350px;
+    width: 350px;
+    border-radius: 50%;
+    align-self: center;
+}
+.info_container{
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-top: 50px;
+}
+.space{
+    margin: 20px 0;
+}

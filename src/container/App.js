@@ -24,17 +24,19 @@ class App extends Component {
   hideRegist = () => this.setState({regist_visible:false})
   send = (message) => {
     let tmpQ = [];
+    const {age,sex}  = this.props.user;
     this
       .props
       .ask(message)
     document.getElementsByClassName('container_chat')[0].scrollTop = 9999999
-    this.setState({input_value: ''})
+    this.setState({input_value: ''});
+    //console.log(this.props.user)
     fetch(`${api}/GetSimi`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json;charset=utf-8"
       },
-      body: JSON.stringify({question: message}),
+      body: JSON.stringify({question: message,age,sex}),
         mode: 'cors'
       })
       .then(res => res.json())
@@ -203,7 +205,9 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return {message_list: state.message.messages, relate: state.message.relate, FL: state.message.fl, tlfc: state.message.tlfc, tuling: state.message.tuling,ksfl:state.message.ksfl}
+  return {message_list: state.message.messages, relate: state.message.relate, FL: state.message.fl, tlfc: state.message.tlfc, tuling: state.message.tuling,ksfl:state.message.ksfl,
+  user:state.user
+  }
 }
 
 function mapDispatchToProps(dispatch) {
