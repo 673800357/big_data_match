@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import ChatList from '../components/ChatList';
 import TagList from '../components/TagList';
-import {Input, Button, Tabs, Tag,Modal,Icon} from 'antd';
+import {Input, Button, Tabs,Modal,Icon} from 'antd';
 import {addMessage, addFL, addTLFC, addTULING,addKSFL} from '../actions/index.js';
 import Login from '../components/Login';
 import {api} from '../const.js';
@@ -72,6 +72,10 @@ class App extends Component {
   componentWillReceiveProps(nextProps) {
     
   }
+  componentWillMount = () => {
+    window.doctor =  Math.round(Math.random() * 5);
+
+  }
   
   render() {
     const {
@@ -137,7 +141,7 @@ class App extends Component {
     return (
       <div className='container'>
         <div className='left_container'>
-          <ChatList message_list={message_list}/>
+          <ChatList message_list={message_list} doctor={this.doctor}/>
           <div style={{
             position: 'relative'
           }}>
@@ -166,7 +170,7 @@ class App extends Component {
           </div>
         </div>
         <div className='right_container'>
-          <Login login={this.showLogin} cancelLogin={this.hideLogin} regist={this.showRegist} cancelRegist={this.hideRegist}/>
+          {/* <Login login={this.showLogin} cancelLogin={this.hideLogin} regist={this.showRegist} cancelRegist={this.hideRegist}/> */}
           <div className='relate'>
             <h3
               style={{
@@ -182,7 +186,7 @@ class App extends Component {
             <TagList tagData={tlfc} click={(t) => this.props.addTuling(t)} tuling={tuling}/>
           </div>
         </div>
-        <Modal visible={login_visible} onCancel={this.hideLogin} title='用户登录' footer={null}>
+        {/* <Modal visible={login_visible} onCancel={this.hideLogin} title='用户登录' footer={null}>
             用户名：<Input prefix={<Icon type="user" />} placeholder='请输入你的用户名' ref={(node)=>this.login_name = node}/>
             密码： <Input type='password' placeholder='请输入你的密码' prefix={<Icon type="lock" />}  ref={(node)=>this.login_password = node}/>
             <Button type='primary' className='button_modal'>登录</Button>
@@ -194,7 +198,7 @@ class App extends Component {
             个人介绍： <TextArea rows={4}  placeholder='几句话描述下自己' ref={(node)=>this.regist_intro = node}/>
             <Button type='primary' className='button_modal'>注册</Button>
             <Button className='button_modal'>取消</Button>
-        </Modal>
+        </Modal> */}
       </div>
     )
   }

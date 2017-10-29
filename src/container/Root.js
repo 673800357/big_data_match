@@ -4,6 +4,8 @@ import {Provider} from 'react-redux';
 import configureStore from '../store';
 import App from './App';
 import Info from './Info';
+import Login from './Login';
+import History from './History';
 const store = configureStore();
 class R extends Component {
   render() {
@@ -19,7 +21,9 @@ class Root extends Component {
       <Provider store={store}>
         <Router history={browserHistory}>
           <Route path='/' component={R}>
-            <IndexRedirect to="/info"/>
+            <IndexRedirect to="/login"/>
+            <Route path = "/login" component = {Login}/>
+            <Route path = "/history" component = {History}/>
             <Route path="/info" component={Info}/>
             <Route path="/main" component={App}/>
           </Route>
