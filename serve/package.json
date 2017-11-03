@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "pm2": "pm2 start pm2.json"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.4",
+    "morgan": "^1.9.0",
+    "mysql2": "^1.4.2",
+    "sequelize": "^4.22.0"
+  }
+}
