@@ -24,7 +24,7 @@ class App extends Component {
   hideRegist = () => this.setState({regist_visible:false})
   send = (message) => {
     let tmpQ = [];
-    const {age,sex}  = this.props.user;
+    const {age,sex,user}  = this.props.user;
     this
       .props
       .ask(message)
@@ -58,8 +58,7 @@ class App extends Component {
           .addTLFC(data.TLFC);
           this.props.addKSFL(data.KSFL)
         document.getElementsByClassName('container_chat')[0].scrollTop = 9999999;
-        this.setState({input_value: ''})
-
+        this.setState({input_value: ''});
       })
       .catch(e => {
         this
@@ -67,8 +66,16 @@ class App extends Component {
           .answer(reply());
         document.getElementsByClassName('container_chat')[0].scrollTop = 9999999;
         this.setState({input_value: ''})
-      })
-  }
+      });
+      fetch('/history/add',{
+        method:'POST',
+        headers: {
+          'Content-Type': ' application/json',
+      },body: JSON.stringify({user,question:message})
+      }).catch(e => console.log(e));
+  
+    
+    }
   componentWillReceiveProps(nextProps) {
     
   }

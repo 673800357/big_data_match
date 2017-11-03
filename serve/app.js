@@ -28,24 +28,28 @@ app.get("/history/get", (req, res) => {
 //用户注册
 app.post("/user/regist", (req, res) => {
   const { user, password } = req.body;
-  User.findAll({ user }).then(data => {
+  console.log(user, password)
+  User.findAll({ where: { user } }).then(data => {
+    console.log(data)
     if (data.length !== 0) {
+      console.log(data)
       res.json({ status: 'error', message: '用户名已经存在' })
     } else {
-      User.create({ user, password }).then(ok => res.json({ status: 'ok' }))
+      User.create({ user, password }).then(ok => res.json({ status: 'ok',user }))
     }
-  }).catch(e => res.json({ status: 'error' }));
+  }).catch(e => { res.json({ status: 'error',message:e.toString() })});
 
 });
 //用户登录
 app.post("/user/login", (req, res) => {
   const { user, password } = req.body;
-  User.findOne({ user }).then(result =>{
-    if (result.password === password){
-      res.json({status:'ok'})
-    }else {
-      res.json({status:'error',message:'错误'});
+  console.log(user, password)
+  User.findOne({ where:{user} }).then(result => {
+    if (result.password === password) {
+      res.json({ status: 'ok',user })
+    } else {
+      res.json({ status: 'error', message: '用户名或密码错误' });
     }
-  }).catch(e => res.json({status:'error',message:'服务器错误'}));
+  }).catch(e => res.json({ status: 'error', message: e.toString()}));
 })
 app.listen(9000);

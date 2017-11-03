@@ -1,0 +1,5 @@
+2017-11-03 14:46 +08:00: [0mGET /user/regist [33m404 [0m4.715 ms - 150[0m
+2017-11-03 14:46 +08:00: [0mPOST /user/regist [33m400 [0m19.282 ms - 1160[0m
+2017-11-03 18:47 +08:00: aaaa dbcf15130bdf5e04fa7fb5ba4e7c6c9f
+2017-11-03 18:47 +08:00: Executing (default): SELECT `id`, `user`, `password` FROM `user` AS `user` WHERE `user`.`user` = 'aaaa' LIMIT 1;
+2017-11-03 18:47 +08:00: [0mPOST /user/login [32m200 [0m133.208 ms - 46[0m

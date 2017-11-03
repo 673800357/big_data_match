@@ -1,9 +1,20 @@
 import React, {Component} from 'react'
 import {Tabs, Button, Input} from 'antd';
 import './History.css';
+import {connect} from 'react-redux';
 const TabPane = Tabs.TabPane;
-export default class History extends Component {
+class History extends Component {
+    state = {
+        questions:[]
+    }
+    componentDidMount = () => {
+      fetch(`/history/get?user=${this.props.user}`).then(res =>res.json()).then(data =>{
+          this.setState({questions:data.result})
+      }).catch(e => console.log(e));
+    }
+    
     render() {
+        const {questions} = this.state;
         return (
             <div className='history_container'>
                 <h2>热门问题：</h2>
@@ -35,13 +46,21 @@ export default class History extends Component {
                 </Tabs>
                 <h2>历史提问：</h2>
                 <ul>
-                    <li>xxxxxqweqwexxxx</li>
-                    <li>xxxqweqwexxxxxx</li>
-                    <li>xxxxxxeqwexxx</li>
-                    <li>xxxxxxeqweqwexxx</li>
+                    {questions.map(item => <li>问题：{item.question} 时间：{item.updatedAt}</li>)}
                 </ul>
                 <Button type='primary' onClick={() => this.props.router.push('/info')}>发起新问题</Button>
             </div>
         )
     }
 }
+const mapStateToProps = (state, ownProps) => {
+    return {
+        user: state.user.user
+    }
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(History)

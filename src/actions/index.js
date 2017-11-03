@@ -3,7 +3,8 @@ export const RELATE = Symbol("RELATE");
 export const FL = Symbol("FL");
 export const TLFC = Symbol("TLFC")
 export const ADD_TULING =Symbol("ADD_TULING")
-export const ADD_KSFL = Symbol("ADD_KSFL")
+export const ADD_KSFL = Symbol("ADD_KSFL");
+export const SET_USER = Symbol("SET_USER");
 export const SET_INFO = Symbol("SET_INFO");
 export function addMessage(data){
     return {type:ADD_MESSAGE,data}
@@ -25,4 +26,7 @@ export function addKSFL(KSFL){
 }
 export function setInfo(data){
     return {type:SET_INFO,data}
+}
+export function setUser(data){
+    return {type:SET_USER,data}
 }

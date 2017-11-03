@@ -1,0 +1,14 @@
+2017-11-03 13:28 +08:00: Fri, 03 Nov 2017 05:28:01 GMT sequelize deprecated String based operators are now deprecated. Please use Symbol based operators for better security, read more at http://docs.sequelizejs.com/manual/tutorial/querying.html#operators at node_modules\_sequelize@4.22.0@sequelize\lib\sequelize.js:236:13
+2017-11-03 14:46 +08:00: SyntaxError: Unexpected token “ in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parse (G:\pj\match11\matchme\serve\node_modules\_body-parser@1.18.2@body-parser\lib\types\json.js:89:19)
+    at G:\pj\match11\matchme\serve\node_modules\_body-parser@1.18.2@body-parser\lib\read.js:121:18
+    at invokeCallback (G:\pj\match11\matchme\serve\node_modules\_raw-body@2.3.2@raw-body\index.js:224:16)
+    at done (G:\pj\match11\matchme\serve\node_modules\_raw-body@2.3.2@raw-body\index.js:213:7)
+    at IncomingMessage.onEnd (G:\pj\match11\matchme\serve\node_modules\_raw-body@2.3.2@raw-body\index.js:273:7)
+    at emitNone (events.js:105:13)
+    at IncomingMessage.emit (events.js:207:7)
+    at endReadableNT (_stream_readable.js:1047:12)
+    at _combinedTickCallback (internal/process/next_tick.js:102:11)
+    at process._tickDomainCallback (internal/process/next_tick.js:198:9)
+2017-11-03 18:44 +08:00: Fri, 03 Nov 2017 10:44:26 GMT sequelize deprecated String based operators are now deprecated. Please use Symbol based operators for better security, read more at http://docs.sequelizejs.com/manual/tutorial/querying.html#operators at node_modules\_sequelize@4.22.0@sequelize\lib\sequelize.js:236:13
