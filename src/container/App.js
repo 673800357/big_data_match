@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import ChatList from '../components/ChatList';
 import TagList from '../components/TagList';
 import {Input, Button, Tabs,Modal,Icon} from 'antd';
-import {addMessage, addFL, addTLFC, addTULING,addKSFL} from '../actions/index.js';
+import {addMessage, addFL, addTLFC, addTULING,addKSFL,setHistory} from '../actions/index.js';
 import Login from '../components/Login';
 import {api} from '../const.js';
 import './App.css';
@@ -187,31 +187,25 @@ class App extends Component {
             <Tabs type="card">
               {tab_data}
             </Tabs>
-
+          </div>
+          <div className='recommend_doctor'>
+            <h3 style={{
+              color: 'black',
+              fontWeight: 'bold'
+            }}>推荐医生</h3>
           </div>
           <div className='taglist'>
             <TagList tagData={tlfc} click={(t) => this.props.addTuling(t)} tuling={tuling}/>
           </div>
         </div>
-        {/* <Modal visible={login_visible} onCancel={this.hideLogin} title='用户登录' footer={null}>
-            用户名：<Input prefix={<Icon type="user" />} placeholder='请输入你的用户名' ref={(node)=>this.login_name = node}/>
-            密码： <Input type='password' placeholder='请输入你的密码' prefix={<Icon type="lock" />}  ref={(node)=>this.login_password = node}/>
-            <Button type='primary' className='button_modal'>登录</Button>
-            <Button className='button_modal'>取消</Button>
-        </Modal>
-        <Modal visible={regist_visible} onCancel={this.hideRegist} title='用户注册' footer={null}>
-            用户名：<Input prefix={<Icon type="user" />} placeholder='请输入要注册的用户名' ref={(node)=>this.regist_name = node}/>
-            输入密码： <Input type='password' placeholder='请输入你的密码' prefix={<Icon type="lock" />} ref={(node)=>this.regist_password = node}/>
-            个人介绍： <TextArea rows={4}  placeholder='几句话描述下自己' ref={(node)=>this.regist_intro = node}/>
-            <Button type='primary' className='button_modal'>注册</Button>
-            <Button className='button_modal'>取消</Button>
-        </Modal> */}
+
       </div>
     )
   }
 
   componentDidMount() {
-    document.title = '医疗问答'
+    document.title = '医疗问答';  
+    this.props.setHistory('main');
   }
 }
 
@@ -240,6 +234,9 @@ function mapDispatchToProps(dispatch) {
     },
     addKSFL: (k) =>{
       dispatch(addKSFL(k))
+    },
+    setHistory: (history) =>{
+      dispatch(setHistory(history))
     }
   }
 }

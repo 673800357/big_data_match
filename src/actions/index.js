@@ -6,6 +6,7 @@ export const ADD_TULING =Symbol("ADD_TULING")
 export const ADD_KSFL = Symbol("ADD_KSFL");
 export const SET_USER = Symbol("SET_USER");
 export const SET_INFO = Symbol("SET_INFO");
+export const SET_HISTORY = Symbol("SET_HISTORY");
 export function addMessage(data){
     return {type:ADD_MESSAGE,data}
 }
@@ -29,4 +30,7 @@ export function setInfo(data){
 }
 export function setUser(data){
     return {type:SET_USER,data}
+}
+export function setHistory(history){
+    return {type:SET_HISTORY,history}
 }

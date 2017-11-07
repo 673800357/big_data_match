@@ -2,12 +2,14 @@ import React, {Component} from 'react'
 import {Tabs, Button, Input} from 'antd';
 import './History.css';
 import {connect} from 'react-redux';
+import {setHistory} from '../actions/index';
 const TabPane = Tabs.TabPane;
 class History extends Component {
     state = {
         questions:[]
     }
     componentDidMount = () => {
+        this.props.setHistory('history');
       fetch(`/history/get?user=${this.props.user}`).then(res =>res.json()).then(data =>{
           this.setState({questions:data.result})
       }).catch(e => console.log(e));
@@ -44,7 +46,7 @@ class History extends Component {
                         </ul>
                     </TabPane>
                 </Tabs>
-                <h2>历史提问：</h2>
+                <h2 style={{margin:'150px 0 10px'}}>历史提问：</h2>
                 <ul>
                     {questions.map(item => <li>问题：{item.question} 时间：{item.updatedAt}</li>)}
                 </ul>
@@ -60,7 +62,9 @@ const mapStateToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-
+        setHistory: (history) =>{
+          dispatch(setHistory(history))
+        }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(History)

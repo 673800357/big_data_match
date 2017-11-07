@@ -2,7 +2,7 @@
   width: 1200px;
   margin: 0 auto;
   overflow: hidden;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .left_container{
   float: left;
@@ -19,7 +19,13 @@
   padding: 5px;
   background: url('../static/b1.jpg');
   background-size: cover;
-  height: 402px;
+  height: 300px;
+  overflow: auto;
+}
+.recommend_doctor{
+  height: 102px;
+  overflow: auto;
+  background-color: lightyellow;
 }
 .taglist{
   width: 300px;

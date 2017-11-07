@@ -3,3 +3,12 @@
 2017-11-03 18:47 +08:00: aaaa dbcf15130bdf5e04fa7fb5ba4e7c6c9f
 2017-11-03 18:47 +08:00: Executing (default): SELECT `id`, `user`, `password` FROM `user` AS `user` WHERE `user`.`user` = 'aaaa' LIMIT 1;
 2017-11-03 18:47 +08:00: [0mPOST /user/login [32m200 [0m133.208 ms - 46[0m
+2017-11-05 14:43 +08:00: tanjiahui e10adc3949ba59abbe56e057f20f883e
+2017-11-05 14:43 +08:00: Executing (default): SELECT `id`, `user`, `password` FROM `user` AS `user` WHERE `user`.`user` = 'tanjiahui' LIMIT 1;
+2017-11-05 14:43 +08:00: [0mPOST /user/login [32m200 [0m158.453 ms - 34[0m
+2017-11-05 14:43 +08:00: Executing (default): SELECT `id`, `user`, `question`, `createdAt`, `updatedAt` FROM `history` AS `history` WHERE `history`.`user` = 'tanjiahui';
+2017-11-05 14:43 +08:00: [0mGET /history/get?user=tanjiahui [36m304 [0m8.792 ms - -[0m
+2017-11-05 14:43 +08:00: Executing (default): INSERT INTO `history` (`id`,`user`,`question`,`createdAt`,`updatedAt`) VALUES (DEFAULT,'tanjiahui','dadasd','2017-11-05 06:43:50','2017-11-05 06:43:50');
+2017-11-05 14:43 +08:00: [0mPOST /history/add [32m200 [0m84.466 ms - 15[0m
+2017-11-05 14:44 +08:00: Executing (default): SELECT `id`, `user`, `question`, `createdAt`, `updatedAt` FROM `history` AS `history` WHERE `history`.`user` = 'tanjiahui';
+2017-11-05 14:44 +08:00: [0mGET /history/get?user=tanjiahui [32m200 [0m30.953 ms - 682[0m

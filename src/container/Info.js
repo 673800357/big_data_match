@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {setInfo} from '../actions/index';
+import {setInfo,setHistory} from '../actions/index';
 import {Button, Input, InputNumber, Select} from 'antd';
 import {connect} from 'react-redux';
 import './info.css';
@@ -17,6 +17,10 @@ class Info extends Component {
     console.log(this.state)
     this.props.router.push('/main')
   }
+  componentDidMount = () => {
+    this.props.setHistory('info')
+  }
+  
   render() {
     const {name, age, sex} = this.state;
     return (
@@ -62,6 +66,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     setInfo: (data) => {
       dispatch(setInfo(data))
+    },
+    setHistory: (history) =>{
+      dispatch(setHistory(history))
     }
   }
 }

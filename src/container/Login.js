@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import { Tabs, Button, Input, Modal } from 'antd';
-import { setInfo, setUser } from '../actions/index';
+import { setInfo, setUser,setHistory } from '../actions/index';
 import { connect } from 'react-redux';
 import md5 from 'md5';
 const TabPane = Tabs.TabPane;
@@ -14,6 +14,10 @@ class Login extends Component {
         password2: '',
         intro: ''
     }
+    componentDidMount = () => {
+      this.props.setHistory('login');
+    }
+    
     login = () => {
         //点击登录
         fetch('/user/login', {
@@ -90,6 +94,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         setUser: (user) => {
             dispatch(setUser({ user }))
+        },
+        setHistory: (history) =>{
+          dispatch(setHistory(history))
         }
     }
 }

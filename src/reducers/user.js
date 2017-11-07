@@ -1,9 +1,10 @@
-import {SET_INFO,SET_USER} from '../actions/index';
+import {SET_INFO,SET_USER,SET_HISTORY} from '../actions/index';
 const initialState = {
     age:20,
     sex:'男',
     name:'',
-    user:'游客'
+    user:'游客',
+    history:'login'
 }
 export function user(state = initialState, action) {
     console.log(action)
@@ -16,6 +17,10 @@ export function user(state = initialState, action) {
             return {
                ...state, ...action.data
             }
+        case SET_HISTORY:
+        return {
+            ...state,history:action.history
+        }
         default:
             return state
     }
