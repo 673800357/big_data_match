@@ -1,69 +1,93 @@
 import React, {Component} from 'react'
-import {Tabs, Button, Input} from 'antd';
+import {Tabs, Button, Input, Table,Modal} from 'antd';
 import './History.css';
 import {connect} from 'react-redux';
 import {setHistory} from '../actions/index';
+import {api} from '../const'
 const TabPane = Tabs.TabPane;
+const columns = [
+    {
+        title: '问题',
+        dataIndex: 'question',
+        key: 'question'
+    }, {
+        title: '时间',
+        dataIndex: 'time',
+        key: 'time'
+    }, {
+        title: '回答',
+        dataIndex: 'answer',
+        key: 'answer'
+    }
+];
 class History extends Component {
     state = {
-        questions:[]
+        questions: [],
+        hot: []
+    }
+    ask = (question) => () => {
+        fetch(`${api}/GetSimi`, {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json;charset=utf-8"
+            },
+            body: JSON.stringify({question,age:20,sex:'男'}),
+              mode: 'cors'
+            }).then(res => res.json()).then(data => Modal.info({content:data.HD,title:'回答'})).catch(e => console.log(e))
     }
     componentDidMount = () => {
-        this.props.setHistory('history');
-      fetch(`/history/get?user=${this.props.user}`).then(res =>res.json()).then(data =>{
-          this.setState({questions:data.result})
-      }).catch(e => console.log(e));
+        this
+            .props
+            .setHistory('history');
+        fetch(`/history/get?user=${this.props.user === '游客'
+            ? window.localStorage.getItem('user')
+            : this.props.user}`)
+            .then(res => res.json())
+            .then(data => {
+                this.setState({questions: data.result})
+            })
+            .catch(e => console.log(e));
+        fetch(`${api}/GetRedian`)
+            .then(res => res.json())
+            .then(data => this.setState({
+                hot: Object
+                    .keys(data)
+                    .map((item,key) =><li onClick={this.ask(data[item])} style={{fontSize:'16px',cursor:'pointer'}}>{key +1}、{data[item]}</li>)
+            }))
+            .catch(e => console.log(e))
     }
-    
+
     render() {
-        const {questions} = this.state;
+        const {questions,hot} = this.state;
+        console.log(questions)
+        const tabledata = questions.map((item,key) => {
+            return {
+                question: item.question,
+                time: new Date(Number(item.time)).toLocaleTimeString(),
+                answer: item.answer || '小邮回答不了',
+                key
+            }
+        })
         return (
             <div className='history_container'>
                 <h2>热门问题：</h2>
-                <Tabs defaultActiveKey="1">
-                    <TabPane tab="内科" key="1">
-                        <ul>
-                            <li>xxxxxxxxx</li>
-                            <li>xxxxxxxxx</li>
-                            <li>xxxxxxxxx</li>
-                            <li>xxxxxxxxx</li>
-                        </ul>
-                    </TabPane>
-                    <TabPane tab="外科" key="2">
-                        <ul>
-                            <li>xxxxdasdasxxxxx</li>
-                            <li>xxxxasdasdxxxxx</li>
-                            <li>xxxxxaaaxxxx</li>
-                            <li>xxxxxxssssxxx</li>
-                        </ul>
-                    </TabPane>
-                    <TabPane tab="儿科" key="3">
-                        <ul>
-                            <li>xxxxxqweqwexxxx</li>
-                            <li>xxxqweqwexxxxxx</li>
-                            <li>xxxxxxeqwexxx</li>
-                            <li>xxxxxxeqweqwexxx</li>
-                        </ul>
-                    </TabPane>
-                </Tabs>
-                <h2 style={{margin:'150px 0 10px'}}>历史提问：</h2>
-                <ul>
-                    {questions.map(item => <li>问题：{item.question} 时间：{item.updatedAt}</li>)}
-                </ul>
+                <ul>{hot}</ul>
+                <h2 style={{
+                    margin: '10px 0 10px'
+                }}>历史提问：</h2>
+                <Table columns={columns} dataSource={tabledata}/>
                 <Button type='primary' onClick={() => this.props.router.push('/info')}>发起新问题</Button>
             </div>
         )
     }
 }
 const mapStateToProps = (state, ownProps) => {
-    return {
-        user: state.user.user
-    }
+    return {user: state.user.user}
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        setHistory: (history) =>{
-          dispatch(setHistory(history))
+        setHistory: (history) => {
+            dispatch(setHistory(history))
         }
     }
 }

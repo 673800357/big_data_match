@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import ChatList from '../components/ChatList';
 import TagList from '../components/TagList';
 import {Input, Button, Tabs,Modal,Icon} from 'antd';
-import {addMessage, addFL, addTLFC, addTULING,addKSFL,setHistory} from '../actions/index.js';
+import {addMessage, addFL, addTLFC, addTULING,addKSFL,setHistory,setDoctor} from '../actions/index.js';
 import Login from '../components/Login';
 import {api} from '../const.js';
 import './App.css';
@@ -50,6 +50,7 @@ class App extends Component {
             tmpQ.push(data[key]);
           }
         }
+        this.props.setDoctor({doc_keshi:data.doc_keshi,doc_name:data.doc_name,doc_shanchang:data.doc_shanchang});
         this
           .props
           .addQuestions(tmpQ);
@@ -58,6 +59,12 @@ class App extends Component {
           .addTLFC(data.TLFC);
           this.props.addKSFL(data.KSFL)
         document.getElementsByClassName('container_chat')[0].scrollTop = 9999999;
+        fetch('/history/add',{
+          method:'POST',
+          headers: {
+            'Content-Type': ' application/json',
+        },body: JSON.stringify({user,question:message,answer:data.HD})
+        }).catch(e => console.log(e));
         this.setState({input_value: ''});
       })
       .catch(e => {
@@ -67,14 +74,6 @@ class App extends Component {
         document.getElementsByClassName('container_chat')[0].scrollTop = 9999999;
         this.setState({input_value: ''})
       });
-      fetch('/history/add',{
-        method:'POST',
-        headers: {
-          'Content-Type': ' application/json',
-      },body: JSON.stringify({user,question:message})
-      }).catch(e => console.log(e));
-  
-    
     }
   componentWillReceiveProps(nextProps) {
     
@@ -92,7 +91,8 @@ class App extends Component {
       tlfc,
       tuling,
       addTuling,
-      ksfl
+      ksfl,
+      user
     } = this.props;
     const {login_visible,regist_visible} = this.state;
     let tab_data = [];
@@ -193,6 +193,9 @@ class App extends Component {
               color: 'black',
               fontWeight: 'bold'
             }}>推荐医生</h3>
+            <p>姓名：{user.doctor.doc_name}</p>
+            <p>科室：{user.doctor.doc_keshi}</p>
+            <p>擅长：{user.doctor.doc_shanchang}</p>
           </div>
           <div className='taglist'>
             <TagList tagData={tlfc} click={(t) => this.props.addTuling(t)} tuling={tuling}/>
@@ -237,6 +240,9 @@ function mapDispatchToProps(dispatch) {
     },
     setHistory: (history) =>{
       dispatch(setHistory(history))
+    },
+    setDoctor: (info) => {
+      dispatch(setDoctor(info))
     }
   }
 }

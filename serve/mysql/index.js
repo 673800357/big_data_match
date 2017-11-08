@@ -17,9 +17,12 @@ const History = sequelize.define('history',
 {
 user: Sequelize.STRING,//用户名
 question: Sequelize.STRING,//历史提问
+time:Sequelize.STRING,
+answer:Sequelize.STRING
 },
 {
-    freezeTableName: true
+    freezeTableName: true,
+    timestamps:false
 });
 module.exports = {
     User,History

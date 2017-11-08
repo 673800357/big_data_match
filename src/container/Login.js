@@ -29,6 +29,7 @@ class Login extends Component {
         }).then(res => res.json()).then(data => {
             if (data.status === 'ok') {
                 this.props.setUser(data.user);
+                window.localStorage.setItem('user',data.user)
                 this.props.router.push('/history');
             } else {
                 Modal.error({content:data.message})

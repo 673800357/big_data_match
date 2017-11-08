@@ -17,8 +17,8 @@ app.get('/', function (req, res) {
 });
 //添加历史
 app.post('/history/add', (req, res) => {
-  const { user, question } = req.body;
-  History.create({ user, question }).then(ok => res.json({ status: 'ok' })).catch(e => res.json({ status: 'error' }));
+  const { user, question,answer } = req.body;
+  History.create({ user, question,time: Date.now(),answer }).then(ok => res.json({ status: 'ok' })).catch(e => {;res.json({ status: 'error',message:e })});
 });
 //查询历史提问
 app.get("/history/get", (req, res) => {

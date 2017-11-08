@@ -7,6 +7,7 @@ export const ADD_KSFL = Symbol("ADD_KSFL");
 export const SET_USER = Symbol("SET_USER");
 export const SET_INFO = Symbol("SET_INFO");
 export const SET_HISTORY = Symbol("SET_HISTORY");
+export const SET_DOCTOR = Symbol("SET_DOCTOR");
 export function addMessage(data){
     return {type:ADD_MESSAGE,data}
 }
@@ -33,4 +34,7 @@ export function setUser(data){
 }
 export function setHistory(history){
     return {type:SET_HISTORY,history}
+}
+export function setDoctor(info){
+    return {type:SET_DOCTOR,info}
 }
