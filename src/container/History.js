@@ -14,10 +14,6 @@ const columns = [
         title: '时间',
         dataIndex: 'time',
         key: 'time'
-    }, {
-        title: '回答',
-        dataIndex: 'answer',
-        key: 'answer'
     }
 ];
 class History extends Component {
@@ -52,7 +48,7 @@ class History extends Component {
             .then(data => this.setState({
                 hot: Object
                     .keys(data)
-                    .map((item,key) =><li onClick={this.ask(data[item])} style={{fontSize:'16px',cursor:'pointer'}}>{key +1}、{data[item]}</li>)
+                    .map((item,key) =><li  className='history_redian' onClick={this.ask(data[item])}>{key +1}、{data[item]}</li>)
             }))
             .catch(e => console.log(e))
     }
@@ -63,19 +59,21 @@ class History extends Component {
         const tabledata = questions.map((item,key) => {
             return {
                 question: item.question,
-                time: new Date(Number(item.time)).toLocaleTimeString(),
+                time: new Date(Number(item.time)).toLocaleString(),
                 answer: item.answer || '小邮回答不了',
-                key
+                key,
+                timestamp:item.time
             }
-        })
+        });
+        tabledata.sort((a,b) => b.timestamp - a.timestamp);
         return (
             <div className='history_container'>
                 <h2>热门问题：</h2>
-                <ul>{hot}</ul>
+                <ul>{hot.slice(0,5)}</ul>
                 <h2 style={{
                     margin: '10px 0 10px'
                 }}>历史提问：</h2>
-                <Table columns={columns} dataSource={tabledata}/>
+                <Table columns={columns} dataSource={tabledata} expandedRowRender={record => <p>回答：{record.answer}</p>}/>
                 <Button type='primary' onClick={() => this.props.router.push('/info')}>发起新问题</Button>
             </div>
         )

@@ -6,12 +6,18 @@ const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const { User, History } = require("./mysql/index");
+
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.all("*", (req, res, next) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Cache-Control", "no-cache");
+  res.set("Access-Control-Allow-Credentials", true);
+  next();
+});
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });

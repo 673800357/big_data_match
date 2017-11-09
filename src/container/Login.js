@@ -36,7 +36,6 @@ class Login extends Component {
                // window.location.reload();
             }
         }).catch(e => console.log(e));
-
     }
     regist = () => {
         //点击注册

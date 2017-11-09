@@ -4,3 +4,12 @@
     overflow: hidden;
     margin-top: 50px;
 }
+.history_redian{
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+.history_redian:hover{
+    color: lightskyblue;
+    margin-bottom: 5px;
+}

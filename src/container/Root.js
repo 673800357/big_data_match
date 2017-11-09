@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
-import {Router, Route, browserHistory, IndexRedirect} from 'react-router';
+import {Router, Route, browserHistory,hashHistory, IndexRedirect,Link} from 'react-router';
 import {Provider, connect} from 'react-redux';
 import configureStore from '../store';
 import {Breadcrumb, Modal} from 'antd';
 import App from './App';
 import Info from './Info';
+import {cleanMessage} from '../actions/index';
 import Login from './Login';
 import History from './History';
 const store = configureStore();
 const a = ['/login', '/history', '/info', '/main'];
 class R extends Component {
   componentDidMount = () => {
-    console.log(this.props.history)
+   // console.log(browserHistory)
   }
 
   render() {
@@ -59,8 +60,8 @@ class R extends Component {
               {item === '用户登录'
                 ? <a
                     onClick=
-                    {() => { console.log(item); if (item === '用户登录'){ Modal.confirm({content:'是否要登出？',onOk:() =>{ window.localStorage.removeItem('user'); window.location.href='/' }}) } }}>{item}</a>
-                : <a href ={a[index]} onClick= {() => { }}>{item}</a>}
+                    {() => { console.log(item); if (item === '用户登录'){ Modal.confirm({content:'是否要登出？',onOk:() =>{ window.localStorage.removeItem('user'); store.dispatch(cleanMessage());hashHistory.push('/') }}) } }}>{item}</a>
+                : <Link to ={a[index]} onClick={() => store.dispatch(cleanMessage())}>{item}</Link>}
             </Breadcrumb.Item>
           })}
         </Breadcrumb>
@@ -78,7 +79,7 @@ class Root extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router history={browserHistory}>
+        <Router history={hashHistory}>
           <Route path='/' component={wrapR}>
             <IndexRedirect to="/login"/>
             <Route path="/login" component={Login}/>

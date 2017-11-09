@@ -1,4 +1,5 @@
 export const ADD_MESSAGE = Symbol("ADD_MESSAGE");
+export const CLEAN_MESSAGE = Symbol("CLEAN_MESSAGE");
 export const RELATE = Symbol("RELATE");
 export const FL = Symbol("FL");
 export const TLFC = Symbol("TLFC")
@@ -37,4 +38,7 @@ export function setHistory(history){
 }
 export function setDoctor(info){
     return {type:SET_DOCTOR,info}
+}
+export function cleanMessage(){
+    return {type:CLEAN_MESSAGE}
 }

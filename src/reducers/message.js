@@ -1,4 +1,4 @@
-import { ADD_MESSAGE,RELATE ,FL,TLFC,ADD_TULING,ADD_KSFL} from '../actions/index';
+import { ADD_MESSAGE,RELATE ,FL,TLFC,ADD_TULING,ADD_KSFL,CLEAN_MESSAGE} from '../actions/index';
 import deep from 'deep'
 const initialState = {
     messages:[{role:'doctor',message:'你好请问需要什么帮助吗'},
@@ -49,6 +49,10 @@ export function message(state= initialState,action){
         case ADD_KSFL:
         return {
             ...state,ksfl:action.KSFL
+        }
+        case CLEAN_MESSAGE:
+        return {
+            ...deep.clone(initialState)
         }
         default:
             return state

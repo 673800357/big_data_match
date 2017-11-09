@@ -41,9 +41,15 @@ class App extends Component {
       })
       .then(res => res.json())
       .then(data => {
-        this
+        if (data.HD == 0 ){
+          this
+          .props
+          .answer(reply());
+        }else{
+          this
           .props
           .answer(data.HD);
+        }
         for (let key in data) {
           if (key.slice(0, 8) === 'question') {
             //问题
@@ -80,7 +86,7 @@ class App extends Component {
   }
   componentWillMount = () => {
     window.doctor =  Math.round(Math.random() * 5);
-
+    console.log(111111111)
   }
   
   render() {
