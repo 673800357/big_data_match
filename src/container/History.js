@@ -32,6 +32,7 @@ class History extends Component {
             }).then(res => res.json()).then(data => Modal.info({content:data.HD,title:'回答'})).catch(e => console.log(e))
     }
     componentDidMount = () => {
+        
         this
             .props
             .setHistory('history');
@@ -50,7 +51,7 @@ class History extends Component {
                     .keys(data)
                     .map((item,key) =><li  className='history_redian' onClick={this.ask(data[item])}>{key +1}、{data[item]}</li>)
             }))
-            .catch(e => console.log(e))
+            .catch(e => console.log(e));
     }
 
     render() {

@@ -3,6 +3,7 @@ import {setInfo,setHistory} from '../actions/index';
 import {Button, Input, InputNumber, Select} from 'antd';
 import {connect} from 'react-redux';
 import './info.css';
+const { TextArea } = Input;
 const Option = Select.Option;
 class Info extends Component {
   state = {
@@ -52,8 +53,12 @@ class Info extends Component {
             <Option value="男">男</Option>
             <Option value="女">女</Option>
           </Select>
+         
         </div>
-
+          <div className='space'>
+          过往病史：
+          <TextArea rows={4} />
+          </div>
         <Button type='primary' size='large' onClick={this.handle} disabled={!(name && sex && age)}>提交</Button>
       </div>
     )

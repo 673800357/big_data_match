@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import { Tabs, Button, Input, Modal } from 'antd';
-import { setInfo, setUser,setHistory } from '../actions/index';
+import {  setUser,setHistory } from '../actions/index';
 import { connect } from 'react-redux';
 import md5 from 'md5';
 const TabPane = Tabs.TabPane;
@@ -59,8 +59,7 @@ class Login extends Component {
                 Modal.error({content:data.message})
                //window.location.reload();
             }
-        }).catch(e => console.log(e));
-       
+        }).catch(e => console.log(e)); 
     }
     render() {
         const { name1, name2, password2, password1, intro } = this.state;
