@@ -82,7 +82,11 @@ class Root extends Component {
         <Router history={hashHistory}>
           <Route path='/' component={wrapR}>
             <IndexRedirect to="/login"/>
-            <Route path="/login" component={Login}/>
+            <Route path="/login" component={Login}  onEnter={(nextState, replace) => {
+              if (window.localStorage.getItem('user')!= null){
+                replace("/history")
+              }
+            }}/>
             <Route path="/history" component={History}/>
             <Route path="/info" component={Info}/>
             <Route path="/main" component={App}/>

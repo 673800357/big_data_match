@@ -24,6 +24,7 @@ class Info extends Component {
   
   render() {
     const {name, age, sex} = this.state;
+  
     return (
       <div className='info_container'>
         <img className='info_header' src={require('../static/head2.jpg')}/>
@@ -31,7 +32,7 @@ class Info extends Component {
         <div  className='space'>
           姓名：<Input
             placeholder='your name'
-            value={this.state.name}
+            value={this.state.name || this.props.bingren}
             size='large'
             onChange={(e) => this.setState({name: e.target.value})}/></div>
         <div className='space'>
@@ -65,7 +66,9 @@ class Info extends Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  return {
+    bingren: state.user.name
+  }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
