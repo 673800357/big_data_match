@@ -60,7 +60,7 @@ class R extends Component {
               {item === '用户登录'
                 ? <a
                     onClick=
-                    {() => { console.log(item); if (item === '用户登录'){ Modal.confirm({content:'是否要登出？',onOk:() =>{ window.localStorage.removeItem('user'); store.dispatch(cleanMessage());hashHistory.push('/') }}) } }}>{window.localStorage.getItem('user')==null?'用户登录':window.localStorage.getItem('user')}</a>
+                    {() => { console.log(item); if (item === '用户登录'){ Modal.confirm({content:'是否要登出？',onOk:() =>{ window.localStorage.clear(); store.dispatch(cleanMessage());hashHistory.push('/') }}) } }}>{window.localStorage.getItem('user')==null?'用户登录':window.localStorage.getItem('user')}</a>
                 : <Link to ={a[index]} onClick={() => store.dispatch(cleanMessage())}>{item}</Link>}
             </Breadcrumb.Item>
           })}

@@ -44,14 +44,27 @@ class History extends Component {
                 this.setState({questions: data.result})
             })
             .catch(e => console.log(e));
-        fetch(`${api}/GetRedian`)
-            .then(res => res.json())
-            .then(data => this.setState({
+            if (window.localStorage.getItem('redian') == null){
+                fetch(`${api}/GetRedian`)
+                .then(res => res.json())
+                .then(data => {
+                    window.localStorage.setItem("redian",JSON.stringify(data));
+                    this.setState({
+                        hot: Object
+                            .keys(data)
+                            .map((item,key) =><li className='history_redian' onClick={this.ask(data[item])}>{key +1}、{data[item]}</li>)
+                    })
+                })
+                .catch(e => console.log(e));
+            }else{
+               const  tempdata = JSON.parse(window.localStorage.getItem("redian"))
+               this.setState({
                 hot: Object
-                    .keys(data)
-                    .map((item,key) =><li  className='history_redian' onClick={this.ask(data[item])}>{key +1}、{data[item]}</li>)
-            }))
-            .catch(e => console.log(e));
+                    .keys(tempdata)
+                    .map((item,key) =><li className='history_redian' onClick={this.ask(tempdata[item])}>{key +1}、{tempdata[item]}</li>)
+            })
+            }
+
     }
 
     render() {
