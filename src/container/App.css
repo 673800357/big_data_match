@@ -17,9 +17,10 @@
 .relate{
   border: 1px solid rgb(217, 217, 217);
   padding: 5px;
-  background: url('../static/b1.jpg');
+  /* background: url('../static/b1.jpg'); */
   background-size: cover;
   height: 250px;
+  background-color: lightblue;
   overflow: auto;
 }
 .recommend_doctor{
