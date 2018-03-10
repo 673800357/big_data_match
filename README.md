@@ -1,5 +1,14 @@
-## 前端代码
+## 医疗问答FE_code
+#### [线上地址](http://180.209.64.50:8080) 
+#### 前端主要是基于react技术栈
 
+#### 后端接口是实验室学长用python写的基于机器学习的自然语言处理
+
+#### 一些效果图
+![](/example/1.png)
+![](/example/2.png)
+![](/example/4.png)
+![](/example/5.png)
 > 开发模式预览
 - 安装nodejs环境（nodejs>= 6.0）
 - 安装依赖 npm install
